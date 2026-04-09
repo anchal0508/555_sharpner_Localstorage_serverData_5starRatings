@@ -1,123 +1,71 @@
-/*
 
-ChooseExpenseAmount
-Choose Description
-Choose a Catagory (DDL)
+window.addEventListener("DOMContentLoaded", () => {
+    axios.get("https://crudcrud.com/api/d8acabd76a014e4ea012b5eb3e996fdf/ratings/")
+        .then((msg) => { 
+      msg.data.forEach((i)=>{
+        displayOnScreen(i);
+        console.log(i);
+      })
+    })
+    .catch((err) => console.log(err));
+})
 
-*/
-
-function handleFormSubmit(event) {  
-    // event.preventDefault();
-
-    const expense = event.target.expense.value;
-    const Description = event.target.Description.value;
-    const Catagory = event.target.Catagory.value;
-
+function handleFormSubmit(event) {
+event.preventDefault();
     const userDetails = {
-        expense,
-        Description,
-        Catagory,
+        username: event.target.username.value,
+        rating: event.target.rating.value
     };
 
-    const userList = JSON.parse(localStorage.getItem('usersList')) || [];
+    axios.post("https://crudcrud.com/api/d8acabd76a014e4ea012b5eb3e996fdf/ratings", userDetails)
+        .then((res) => {
+            displayOnScreen(res.data);
+        })
+        .catch((err) => console.log(err));
 
-    const editId = sessionStorage.getItem("editId");
-    if (editId) {
-        update(editId, userDetails, userList);
-    }
-    else {
-        add(userDetails, userList);
-    }
-    localStorage.setItem('usersList', JSON.stringify(userList));
-    }
-
-    document.addEventListener("DOMContentLoaded", initialize);
-
-
-function initialize() {
-        
-        const userList = JSON.parse(localStorage.getItem("usersList")) || [];
-        for (let i = 0; i < userList.length; i++){
-            display(userList[i]);
-        }
-    }
-
-    function display(data) {
-    
-        const ul = document.querySelector('ul');
-
-        const li = document.createElement('li');
-
-        li.textContent = `${data.id}, ${data.expense}, ${data.Description}. ${data.Catagory}`;
-
-        li.id = data.id;
-        ul.appendChild(li);
-
-        const button = document.createElement('button');
-        button.textContent = 'Delete';
-
-        button.addEventListener('click', () => deleteData(data.id, li));
-
-        const editButton = document.createElement('button');
-        li.appendChild(button);
-        editButton.textContent = 'Edit';
-
-        editButton.addEventListener('click', () => editData(data, li));
-
-        li.appendChild(editButton);
-            
 }
 
-function add(userDetails, userList) {
-    userDetails.id = Date.now();
-    userList.push(userDetails);
-    display(userDetails);
-    }
+function displayOnScreen(userDetails) {
+    const li = document.createElement('li');
+    li.appendChild(
+        document.createTextNode(
+            `${userDetails.username} : ${userDetails.rating}`
+        )
+    );
 
-     
+    const deleteButton = document.createElement('button');
+    deleteButton.appendChild(
+        document.createTextNode('Delete user Details')
+    );
+    li.appendChild(deleteButton);
 
-    function deleteData(id, li) {
-        const userList = JSON.parse(localStorage.getItem('usersList')); 
+    const editButton = document.createElement('button');
+    editButton.appendChild(
+        document.createTextNode("Edit User Ratings")
+    );
+    li.appendChild(editButton);
 
-        const updatedUserList = [];
+    const ul = document.querySelector('ul');
+    ul.appendChild(li);
 
-        for (let user1 of userList) {
-            if (user1.id != id) {
-                updatedUserList.push(user1);
-            }
-        }
 
-        localStorage.setItem('usersList',JSON.stringify(updatedUserList)); 
-        li.remove();
 
-    }
+    deleteButton.addEventListener('click', function (event) {
+        ul.removeChild(event.target.parentElement);
+        axios.delete(`https://crudcrud.com/api/d8acabd76a014e4ea012b5eb3e996fdf/ratings/${userDetails._id}`)
+            .then(() => console.log("deleted"))
+            .chatch((err) => console.log(err));
+    })
 
-    function editData(data, li) {
 
-        const expense = document.querySelector('#expense');
-        const Description = document.querySelector('#Description');
-        const Catagory = document.querySelector('#Catagory');
+    editButton.addEventListener('click', function (event) {
+        ul.removeChild(event.target.parentElement);
+         axios.delete(`https://crudcrud.com/api/d8acabd76a014e4ea012b5eb3e996fdf/ratings/${userDetails._id}`)
+            .then(() => console.log("deleted"))
+            .chatch((err) => console.log(err));
+        document.querySelector("#username").value = userDetails.username;
+        document.querySelector("#ratings").value = userDetails.rating;
 
-        expense.value = data.expense;
-        Description.value = data.Description;
-        Catagory.value = data.Catagory;
-
-        sessionStorage.setItem("editId", data.id);
-
-    }
-
-function update(editId, userDetails, userList) {
-    for (let i = 0; i < userList.length; i++){
-        if (userList[i].id == editId) {
-            userList[i].expense = userDetails.expense;
-            userList[i].Description = userDetails.Description;
-            userList[i].Catagory = userDetails.Catagory;
-            break;
-        }
-    }
-
-    const li = document.getElementById(editId);
-    li.firstChild.textContent = Object.values(userDetails).join(" ");
-    sessionStorage.removeItem("editId");
+       
+    })
 }
-    // module.exports = handleFormSubmit

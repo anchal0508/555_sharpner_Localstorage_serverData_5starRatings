@@ -1,38 +1,11 @@
-body {
-  font-family: sans-serif;
-  -webkit-font-smoothing: auto;
-  -moz-font-smoothing: auto;
-  -moz-osx-font-smoothing: grayscale;
-  /* font-smoothing: auto; */
-  text-rendering: optimizeLegibility;
-  font-smooth: always;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
+*{
+    margin: 0;
+    padding: 0;
 }
 
-h1 {
-  font-size: 1.5rem;
-}
-.box{
-  border: 2px solid green;
-  width: 100%;
-  margin-top: 100px;
-  box-sizing: border-box;
-  padding: 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-form{
-  padding: 20px;
-  border: 1px solid blue;
-  width: 70%;
-  box-sizing: border-box;
-}
-ul{
-  height: 200px;
-  border: 2px dashed green;
-  width: 70%;
+
+.container .mainHeading{
+    text-align: center;
+    padding: 20px;
+    border-bottom: 5px double blue;
 }
