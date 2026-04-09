@@ -1,13 +1,30 @@
 
 window.addEventListener("DOMContentLoaded", () => {
+    const rating1 = 0;
+    const rating2 = 0;
+    const rating3 = 0;
+    const rating4 = 0;
+    const rating5 = 0;
     axios.get("https://crudcrud.com/api/d8acabd76a014e4ea012b5eb3e996fdf/ratings/")
         .then((msg) => { 
       msg.data.forEach((i)=>{
         displayOnScreen(i);
-        console.log(i);
+        // if(i.rating === '1') rating1++;
+        // if(i.rating === '2') rating2++;
+        // if(i.rating === '3') rating3++;
+        // if(i.rating === '4') rating4++;
+        // if(i.rating === '5') rating5++;
+        console.log(i.rating);
       })
     })
     .catch((err) => console.log(err));
+
+
+    // document.getElementById("1").appendChild(document.createTextNode(rating1));
+    // document.getElementById("2").appendChild(document.createTextNode(rating2));;
+    // document.getElementById("3").appendChild(document.createTextNode(rating3));;
+    // document.getElementById("4").appendChild(document.createTextNode(rating4));;
+    // document.getElementById("5").appendChild(document.createTextNode(rating5));;
 })
 
 function handleFormSubmit(event) {
