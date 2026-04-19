@@ -1,49 +1,157 @@
+<!-- 
+
+The "Financial Dashboard" (High Impact)
+
+The Idea:  
+Use a free API (like CoinGecko for Crypto or Alpha Vantage for Stocks) to build a real-time tracker.
+Showcase your skills:
+
+Async/Await: Fetching live prices and handling network errors with try/catch.
+
+HOFs(Higher-Order Functions): Use .filter() to let users search for specific coins and .reduce() to calculate total portfolio value.
+
+Debouncing: Implement a search bar that only triggers the API call after the user stops typing. 
+
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>555_Fruit Manager</title>
     <link rel="stylesheet" href="style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.11.0/axios.min.js"></script>
 </head>
 
 <body>
 
-    <div class="container">
-        <h1 class="mainHeading">Feedback System</h1>
-        <div class="subContainer">
-            <div class="dashboardBox">
-                <div id="1">*</div>
-                <div id="2">**</div>
-                <div id="3">***</div>
-                <div id="4">****</div>
-                <div id="5">*****</div>
+    <div class="Heading-container">
+        <h1>555_Fruit Manager</h1>
+    </div>
+
+
+    <!---------------------------- Dashboard ---------------------------->
+
+    <div class="dashboard">
+        <!-- input field for form -->
+
+        <div class="input-field" id="All-fields">
+            <form onsubmit="handleSubmitForm(event)" id="formID">
+                <h2>Fruits Collection</h2>
+                <div class="form-lable">
+                    <label for="fruitName">Fruit Name*</label>
+                        <input type="text" name="fruitName" id="fruitName" required>
+                </div>
+                <div class="form-lable">
+                    <label for="quantity">Quantity*</label>
+                        <input type="number" name="quantity" id="quantity" required>
+                </div>
+                <div class="form-lable">
+                    <label for="amount">Amount*</label>
+                        <input type="number" name="amount" id="amount" required>
+                </div>
+                <div class="form-lable">
+                    <label for="block">Block Number*</label>
+                        <select name="block" id="block" required>
+                            <option value="" selected disabled> Select Any Block</option>
+                            <option value="1">Block 1</option>
+                            <option value="2">Block 2</option>
+                            <option value="3">Block 3</option>
+                            <option value="4">Block 4</option>
+                        </select></label>
+                </div>
+                <button type="submit" id="form-submit-btn">Submit</button>
+            </form>
+        </div>
+
+        <!-- local side DataBase -->
+
+        <div class="local-storage span" id="All-fields">
+            <div class="header-search">
+                <h2>Local Database</h2>
+                <input type="text" id="search-fruit" class="input-search" placeholder="Search Fruits">
+                <button type="submit">Search</button>
             </div>
-            <div class="ratingBox">
-                  <form onsubmit="handleFormSubmit(event)">
-                    <label for="username">Enter Your Name</label>
-                    <input type="text" name="username" id="username">
-                    <label for="rating">Choose Rating</label>
-                    <select name="rating" id="rating">
+            <ul class="Local-list" id="list-ul-local">
+                <b>
+                    <li class="list-item"><span>Fruits</span><span>Quantity</span><span>Amount</span><span>Block
+                            No.</span></li>
+                </b>
+            </ul>
+        </div>
+
+
+
+
+
+        <!-- Server Database section -->
+
+        <div class="local-database span" id="All-fields">
+            <div class="header-search">
+                 <button class="horizontal-span" id="getData">GetData</button>
+                <h2>Server's DataBase</h2>
+                <input type="text" class="input-search">
+                <button type="submit">Search</button>
+            </div>
+            <ul class="Server-list" id="list-ul-server">
+                <b>
+                    <li class="list-item"><span>Fruits</span><span>Quantity</span><span>Amount</span><span>Block
+                            No.</span></li>
+                </b>
+            </ul>
+        </div>
+
+        <!-- DashBoard -->
+
+        <div class="mini-dashboard " id="All-fields">
+            <h2>Dashboard</h2>
+            <div class="dashboard-content" id="dashboard">
+                <span id="total-fruits"> Total Fruits :</span>
+                <span id="total-amount">Total Amount :</span>
+                <span id="avarage-amount">Avarage for each Fruit: </span>
+            </div>
+        </div>
+
+
+
+        <!-- 5 stars rating area -->
+
+        <div class="ratings" id="All-fields">
+            <form onsubmit="handleRatings(event)">
+                <h2>Ratings</h2>
+                <ul id="ratings"></ul>
+                <div class="form-lable">
+                    <label for="username">User Name</label>
+                    <input type="text" name="username">
+                </div>
+
+                <div class="form-lable">
+                    Select your Ratings:
+                    <select name="stars" id="stars">
+                        <option value="" selected disabled>Select Your Ratings</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-
-                    <button class="submit-button" id="subBtn" name="subBtn">Submit</button>
-                </form>
-            </div>
-            <div class="dataBox">
-                <ul id="userList" class="userDetails"></ul>
-            </div>
+                </div>
+                <div class="form-lable">
+                    <button class="horizontal-span">Submit</button>
+                </div>
+            </form>
         </div>
-    </div>
-</body>
 
-<script src="index.js"></script>
+
+        
+        <!-- xxx dashboard Ending xxx -->
+    </div>
+
+    <!--xxxxxxxxxxxxxxxxxxxxxxxxxx Dashboard xxxxxxxxxxxxxxxxxxxxxxxxxx-->
+    <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.11.0/axios.min.js"></script>
+
+</body>
 
 </html>

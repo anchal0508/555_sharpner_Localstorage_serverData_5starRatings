@@ -1,11 +1,147 @@
-*{
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+body {
+    line-height: 1.5;
+    font-family: sans-serif;
+    min-height: 100vh;
+    background-image: linear-gradient(rgb(223, 239, 255), rgb(247, 220, 147)90%);
+}
 
-.container .mainHeading{
+h1 {
+    color: darkblue;
+    padding: 15px;
+    border-bottom: 9px double darkblue;
+    width: fit-content;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    background-color: rgb(224, 222, 63);
+    width: 100%;
+    height: fit-content;
+    padding: 0 10px;
     text-align: center;
-    padding: 20px;
-    border-bottom: 5px double blue;
+}
+
+.Heading-container {
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    border: 1px solid black;
+    margin-top: 20px;
+    gap: 10px;
+
+
+}
+
+.dashboard #All-fields {
+    display: flex;
+    border: 1px solid green;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+    margin: 10px;
+}
+
+label {
+    margin: 2px;
+    padding: 2px;
+    color: rgb(8, 8, 44);
+}
+
+input,
+select {
+    width: 100%;
+    padding: 2px 10px;
+    text-align: center;
+}
+
+.span {
+    grid-row: 1/4;
+}
+
+#formID {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.Data-btn,
+#form-submit-btn {
+    align-self: center;
+    width: fit-content;
+    padding: 5px 25px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+ul {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-item {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    border-bottom: 5px solid greenyellow;
+    text-align: center;
+}
+.star-list{
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    border-bottom: 1px solid blue;
+}
+
+.form-lable{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    font-size: 15px;
+    column-gap: auto;
+    
+}
+
+.form-lable input{
+    margin-left: 0;
+    margin: 5px;
+    width: 200px;
+}
+
+.form-lable select{
+    justify-content: end;
+    width: 200px;
+    margin: 5px;
+}
+.horizontal-span {
+    grid-column: span 2;
+}
+
+.dashboard-content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    background-image: linear-gradient(yellow, orange);
+    font-weight: bold;
+}
+
+.header-search {
+    display: flex;
+    flex-direction: row;
+    font-size: 10px;
+    background-color: rgb(224, 222, 63);
+    padding: 8px;
 }
